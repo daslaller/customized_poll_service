@@ -84,8 +84,8 @@ void main() async {
   // Clear enum list and force GC
   enumList.clear();
 
-  print('Enum memory: ${enumMemory} bytes');
-  print('Class memory: ${classMemory} bytes');
+  print('Enum memory: $enumMemory bytes');
+  print('Class memory: $classMemory bytes');
   print('Memory ratio: ${classMemory / enumMemory}');
 
   // Test 2: Performance with identical operations
@@ -151,7 +151,7 @@ void main() async {
 
   print('\nFINAL RESULTS:');
   print(
-    'Memory: Enum=${enumMemory} bytes, Class=${classMemory} bytes, Ratio=${classMemory / enumMemory}',
+    'Memory: Enum=$enumMemory bytes, Class=$classMemory bytes, Ratio=${classMemory / enumMemory}',
   );
   print(
     'Performance: Enum=${enumStopwatch.elapsedMicroseconds}μs, Class=${classStopwatch.elapsedMicroseconds}μs, Ratio=${enumStopwatch.elapsedMicroseconds / classStopwatch.elapsedMicroseconds}',

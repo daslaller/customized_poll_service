@@ -1,6 +1,7 @@
 
 
 import 'dart:io';
+import 'dart:math';
 import '../customized_poll_service.dart';
 
 void main() async {
@@ -9,7 +10,7 @@ void main() async {
   // Create a type-safe polling service
   final pollService = RepeatEngine<String>(
     name: 'DemoService',
-    onPoll: () => fetchData(),
+    onPoll: () => data('test'),
     pollingInterval: const Duration(seconds: 1),
     runUntilDisposed: true,
     enableErrorRecovery: true,
@@ -18,9 +19,10 @@ void main() async {
   
   // Listen to all events including lifecycle events
   pollService.events.listen((event) {
+    print('Raw event: $event');
     switch (event.type) {
       case PollEventType.success:
-        print('✅ Poll #${event.pollCount}: ${event.data}');
+        print('✅ Poll #${event.successfulPollCount}: ${event.data}');
         break;
       case PollEventType.error:
         print('❌ Error: ${event.error?.error}');
@@ -94,3 +96,8 @@ Future<String> fetchData() async {
   return 'Data: ${DateTime.now().millisecondsSinceEpoch}';
 }
 
+Future<String> data(String event) async {
+  await Future.delayed(Duration(milliseconds: Random().nextInt(5000)));
+  
+  return 'Data: $event ${DateTime.now().millisecondsSinceEpoch}';
+}
