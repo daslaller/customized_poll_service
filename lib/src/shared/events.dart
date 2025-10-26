@@ -12,8 +12,9 @@ enum PollEventType {
   reset,
   disposed,
   intervalChanged,
+  lifecycle,
 }
-
+enum LifeCycle {cancel, pause, resume, listen, done, data, error, disposed}
 enum PollStatus { running, paused, stopped }
 
 class PollError {

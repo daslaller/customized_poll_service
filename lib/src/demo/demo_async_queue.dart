@@ -13,7 +13,7 @@ Future<void> main() async {
     name: 'queued',
     pollingInterval: const Duration(milliseconds: 100),
     onPoll: () async {
-      await Future.delayed(const Duration(milliseconds: 200));
+      await Future.delayed(Duration(milliseconds: Random().nextInt(4999) + 1));
       return 'work @ ${DateTime.now().toIso8601String()}';
     },
   );
@@ -22,21 +22,28 @@ Future<void> main() async {
   engine.events.listen((e) {
     if (e.type == PollEventType.success) {
       count++;
-      print('✅ success #$count  data=${e.data}');
+      print('✅ success #$count  data=${e.data}    #Duration: ${e.duration}');
     }
   });
+  engine.cycleEvents.listen((onData) => print('### LifeCycle Event ### $onData'));
 
   // Let it run 1s to accumulate some backlog, then PAUSE 500ms (more backlog),
   // then resume. After resume, you’ll see a continuous stream catching up.
   await Future.delayed(const Duration(seconds: 1));
   print('\n⏸️ pause 500ms (ticks still scheduled; backlog builds)');
   engine.pause();
-  await Future.delayed( Duration(milliseconds: Random().nextInt(4999)+1));
+  await Future.delayed(Duration(milliseconds: 500));
 
   print('▶️ resume — watch it process queued ticks sequentially');
   engine.resume();
 
   await Future.delayed(const Duration(seconds: 2));
+  await for(final e in engine.dataStream){
+    print('await for final: $e');
+  }
   engine.dispose();
-  print('\n→ All scheduled ticks were preserved and processed in order (no overlap).');
+  print(
+    '\n→ All scheduled ticks were preserved and processed in order (no overlap).',
+  );
+
 }
