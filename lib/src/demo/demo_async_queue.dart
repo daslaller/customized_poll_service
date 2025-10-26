@@ -1,5 +1,6 @@
 // bin/demo_async_queue.dart
 import 'dart:async';
+import 'dart:math';
 
 import '../AsyncRepeatEngine.dart'; // your file
 import '../shared/events.dart';
@@ -30,7 +31,7 @@ Future<void> main() async {
   await Future.delayed(const Duration(seconds: 1));
   print('\n⏸️ pause 500ms (ticks still scheduled; backlog builds)');
   engine.pause();
-  await Future.delayed(const Duration(milliseconds: 500));
+  await Future.delayed( Duration(milliseconds: Random().nextInt(4999)+1));
 
   print('▶️ resume — watch it process queued ticks sequentially');
   engine.resume();

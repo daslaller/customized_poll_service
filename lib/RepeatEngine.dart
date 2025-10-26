@@ -24,7 +24,7 @@ export 'src/shared/events.dart'
     show PollEvent, PollEventType, PollStatus, PollError;
 
 // Engines (keep only the public classes you want to expose)
-export 'src/AsyncSyncResultRepeatEngine.dart'
+export 'src/SyncRepeatEngine.dart'
     show AsyncSyncResultRepeatEngine;
 export 'src/AsyncRepeatEngine.dart'
     show AsyncRepeatEngine;

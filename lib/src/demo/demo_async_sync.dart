@@ -1,7 +1,7 @@
 // bin/demo_async_sync.dart
 import 'dart:async';
 
-import '../AsyncSyncResultRepeatEngine.dart'; // your file
+import '../SyncRepeatEngine.dart'; // your file
 
 Future<void> main() async {
   print('🔁 AsyncSyncResultRepeatEngine: drop ticks while busy\n');
