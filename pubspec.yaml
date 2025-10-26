@@ -5,9 +5,13 @@ version: 1.0.0
 
 environment:
   sdk: ^3.8.1
-
+publish_to: none
 # Add regular dependencies here.
 dependencies:
+  get:
+    git: https://github.com/jonataslaw/getx.git
+  mgr_settings_gui:
+    git: https://github.com/daslaller/mgr_settings_gui.git
   # path: ^1.8.0
 
 dev_dependencies:

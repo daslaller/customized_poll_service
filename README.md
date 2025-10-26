@@ -44,7 +44,7 @@ dart pub get
 Minimal example creating a polling engine that runs every second and logs results.
 
 ```dart
-import 'package:customized_poll_service/customized_poll_service.dart';
+import 'package:customized_poll_service/IsolateRepeatEngine.dart';
 
 Future<String> fetch() async => 'Data: ${DateTime.now().toIso8601String()}';
 
