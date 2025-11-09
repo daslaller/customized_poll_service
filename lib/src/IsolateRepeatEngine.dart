@@ -1,5 +1,7 @@
+
+// ignore_for_file: file_names
+
 /// Customized Poll Service - Core RepeatEngine
-///
 /// This file implements a highly-configurable, production-friendly polling engine
 /// that repeatedly executes a user-supplied function on a schedule. It supports:
 /// - Backpressure via queue with multiple overflow strategies
@@ -16,7 +18,7 @@
 ///
 /// Typical usage:
 ///
-///   final engine = RepeatEngine<int>(
+//   final engine = RepeatEngine<int>(
 ///     name: 'example',
 ///     pollingInterval: Duration(seconds: 2),
 ///     onPoll: () async => await fetchCount(),
@@ -47,6 +49,7 @@
 /// self-contained (no deep closures on large object graphs) because it executes
 /// in a separate isolate. For extremely high rates, consider replacing
 /// _runInIsolate with a pooled approach.
+library;
 import 'dart:async';
 import 'dart:collection';
 import 'dart:developer';
@@ -113,6 +116,7 @@ class AdvancedRepeatEngine<T> {
 
   // Queue & workers
   final _queue = ListQueue<_Job>();
+  // ignore: unused_field
   late final List<Future<void>> _workers;
 
   bool get isDisposed => _disposed;

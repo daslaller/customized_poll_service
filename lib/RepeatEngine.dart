@@ -17,6 +17,8 @@
 /// - AsyncSyncResultRepeatEngine (drop ticks while busy; “freshness”)
 /// - AsyncRepeatEngine (queue ticks; sequential; “completeness”)
 /// - AdvancedRepeatEngine / IsolateRepeatEngine (heavy work off main isolate)
+// ignore_for_file: file_names
+
 library;
 
 // Public API

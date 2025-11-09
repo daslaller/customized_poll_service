@@ -22,10 +22,12 @@ Future<void> main() async {
       // This executes in an isolate in your engine:
       final result = fib(n); // or wrap inside runInIsolate per your engine
       final ms = DateTime.now().difference(t0).inMilliseconds;
+      print('Ended: $ms ms');
       return result; // engine emits duration for you
     },
   );
 
+  // ignore: unused_local_variable
   int successes = 0, errors = 0;
   final sub = engine.events.listen((e) {
     switch (e.type) {
